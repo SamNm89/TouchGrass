@@ -11,6 +11,7 @@ namespace TouchGrass.Services
         public Key HotkeyKey { get; set; } = Key.Space;
         public ModifierKeys HotkeyModifiers { get; set; } = ModifierKeys.Alt;
         public bool RunOnStartup { get; set; } = false;
+        public bool ShowTrayIcon { get; set; } = true;
     }
 
     public class SettingsService

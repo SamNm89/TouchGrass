@@ -138,7 +138,9 @@ namespace TouchGrass.ViewModels
             var settingsWindow = new Views.SettingsWindow(App.SettingsService);
             if (settingsWindow.ShowDialog() == true)
             {
-                (System.Windows.Application.Current as App)?.RegisterHotkey();
+                var app = System.Windows.Application.Current as App;
+                app?.RegisterHotkey();
+                app?.UpdateTrayIconVisibility();
             }
         }
     }

@@ -23,6 +23,7 @@ namespace TouchGrass.Views
             _selectedKey = settings.HotkeyKey;
             _selectedModifiers = settings.HotkeyModifiers;
             RunOnStartupCheckBox.IsChecked = settings.RunOnStartup;
+            ShowTrayIconCheckBox.IsChecked = settings.ShowTrayIcon;
 
             UpdateHotkeyText();
         }
@@ -58,7 +59,8 @@ namespace TouchGrass.Views
             {
                 HotkeyKey = _selectedKey,
                 HotkeyModifiers = _selectedModifiers,
-                RunOnStartup = RunOnStartupCheckBox.IsChecked == true
+                RunOnStartup = RunOnStartupCheckBox.IsChecked == true,
+                ShowTrayIcon = ShowTrayIconCheckBox.IsChecked == true
             };
 
             _settingsService.SaveSettings(newSettings);

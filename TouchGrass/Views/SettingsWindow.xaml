@@ -28,7 +28,10 @@
 
         <!-- Startup Section -->
         <GroupBox Header="General" Grid.Row="1" Margin="0,10,0,0" Padding="10">
-            <CheckBox x:Name="RunOnStartupCheckBox" Content="Run on Startup"/>
+            <StackPanel>
+                <CheckBox x:Name="RunOnStartupCheckBox" Content="Run on Startup" Margin="0,0,0,5"/>
+                <CheckBox x:Name="ShowTrayIconCheckBox" Content="Show Tray Icon"/>
+            </StackPanel>
         </GroupBox>
 
         <!-- Buttons -->

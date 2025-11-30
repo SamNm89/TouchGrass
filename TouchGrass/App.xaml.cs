@@ -32,6 +32,7 @@ namespace TouchGrass
             {
                 // Initialize the TaskbarIcon
                 _notifyIcon = (TaskbarIcon)FindResource("TrayIcon");
+                UpdateTrayIconVisibility();
 
                 // Register Hotkey
                 RegisterHotkey();
@@ -62,6 +63,14 @@ namespace TouchGrass
             catch (Exception ex)
             {
                 System.IO.File.AppendAllText("crash_log.txt", $"Hotkey Error: {ex}\n");
+            }
+        }
+
+        public void UpdateTrayIconVisibility()
+        {
+            if (_notifyIcon != null)
+            {
+                _notifyIcon.Visibility = SettingsService.CurrentSettings.ShowTrayIcon ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 
@@ -101,6 +110,7 @@ namespace TouchGrass
             if (settingsWindow.ShowDialog() == true)
             {
                 RegisterHotkey();
+                UpdateTrayIconVisibility();
             }
         }
 
