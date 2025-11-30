@@ -76,7 +76,7 @@
                                 
                                 <!-- Game Cover -->
                                 <Border Grid.Row="0" Background="#333" CornerRadius="0">
-                                    <Image Source="{Binding CoverImagePath}" Stretch="UniformToFill"/>
+                                    <Image Source="{Binding CoverImagePath}" Stretch="Uniform"/>
                                 </Border>
                                 
                                 <TextBlock Grid.Row="1" 
