@@ -238,10 +238,12 @@ namespace TouchGrass.Helpers
                     source.UnlockBits(data);
             }
 
-            Bitmap dest = new Bitmap(srcRect.Width, srcRect.Height);
+            // Add some padding to avoid the icon touching the edges
+            int padding = 16;
+            Bitmap dest = new Bitmap(srcRect.Width + 2 * padding, srcRect.Height + 2 * padding);
             using (Graphics g = Graphics.FromImage(dest))
             {
-                g.DrawImage(source, 0, 0, srcRect, GraphicsUnit.Pixel);
+                g.DrawImage(source, padding, padding, srcRect, GraphicsUnit.Pixel);
             }
             return dest;
         }
