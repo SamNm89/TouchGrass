@@ -100,15 +100,14 @@ namespace TouchGrass.Helpers
             {
                 if (!File.Exists(filePath)) return null;
 
-                // Handle .url files specifically to find the real icon target
-                if (Path.GetExtension(filePath).Equals(".url", StringComparison.OrdinalIgnoreCase))
+                // Handle shortcuts (.url and .lnk) to find the real icon target
+                string extension = Path.GetExtension(filePath);
+                if (extension.Equals(".url", StringComparison.OrdinalIgnoreCase) || 
+                    extension.Equals(".lnk", StringComparison.OrdinalIgnoreCase))
                 {
-                    string? targetPath = GetIconPathFromUrlFile(filePath);
+                    string? targetPath = GetIconLocation(filePath);
                     if (!string.IsNullOrEmpty(targetPath) && File.Exists(targetPath))
                     {
-                        // Use the target path for icon extraction
-                        // Note: We might need the index too, but for simplicity let's try the file first.
-                        // If it's a steam game, it might point to the game exe or steam exe.
                         filePath = targetPath;
                     }
                 }
@@ -181,20 +180,19 @@ namespace TouchGrass.Helpers
             return IntPtr.Zero;
         }
 
-        private static string? GetIconPathFromUrlFile(string urlFilePath)
+        private static string? GetIconLocation(string path)
         {
-            try
+            SHFILEINFO shinfo = new SHFILEINFO();
+            // SHGFI_ICONLOCATION = 0x1000
+            const uint SHGFI_ICONLOCATION = 0x1000;
+            
+            SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_ICONLOCATION);
+            
+            string location = shinfo.szDisplayName;
+            if (!string.IsNullOrEmpty(location))
             {
-                string[] lines = File.ReadAllLines(urlFilePath);
-                foreach (string line in lines)
-                {
-                    if (line.StartsWith("IconFile=", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return line.Substring("IconFile=".Length).Trim();
-                    }
-                }
+                return location;
             }
-            catch { }
             return null;
         }
 
