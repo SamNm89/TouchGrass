@@ -89,7 +89,7 @@ namespace TouchGrass.Helpers
         public static extern IntPtr SHGetFileInfo(string pszPath, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbFileInfo, uint uFlags);
 
         [DllImport("shell32.dll", EntryPoint = "#727")]
-        public static extern int SHGetImageList(int iImageList, ref Guid riid, ref IImageList ppv);
+        public static extern int SHGetImageList(int iImageList, ref Guid riid, out IImageList ppv);
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool DestroyIcon(IntPtr hIcon);
@@ -165,10 +165,10 @@ namespace TouchGrass.Helpers
             // Get the index of the icon
             SHGetFileInfo(path, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), SHGFI_SYSICONINDEX);
 
-            IImageList? imageList = null;
+            IImageList imageList;
             Guid iidImageList = new Guid("46EB5926-582E-4017-9FDF-E8998DAA0950");
             
-            int result = SHGetImageList(imageListSize, ref iidImageList, ref imageList);
+            int result = SHGetImageList(imageListSize, ref iidImageList, out imageList);
 
             if (result == 0 && imageList != null)
             {
