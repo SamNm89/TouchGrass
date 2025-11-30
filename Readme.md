@@ -25,10 +25,10 @@ I built this project for a friend who need this in his life
 
 - fix the icon preview in the icon import menu is postioning the icon wrong
 
-- add in settings the ability to show/hide tray icon
+~~add in settings the ability to show/hide tray icon~~
 
 - add more visuals to the UI
 
 - add the ability to give games tags and filter by tags
 - add the ability to see games as gird (current format) or list (picture from left, name from right)
-- add the ability to show the games size
+- add the ability to show the games size (another info to be visible in the list view)
