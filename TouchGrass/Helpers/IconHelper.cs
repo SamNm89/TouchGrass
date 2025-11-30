@@ -145,8 +145,9 @@ namespace TouchGrass.Helpers
                     string outputPath = Path.Combine(outputFolder, uniqueName);
 
                     using (Bitmap bitmap = icon.ToBitmap())
+                    using (Bitmap trimmedBitmap = TrimBitmap(bitmap))
                     {
-                        bitmap.Save(outputPath, ImageFormat.Png);
+                        trimmedBitmap.Save(outputPath, ImageFormat.Png);
                     }
 
                     DestroyIcon(hIcon);
@@ -195,6 +196,56 @@ namespace TouchGrass.Helpers
             }
             catch { }
             return null;
+        }
+
+        private static Bitmap TrimBitmap(Bitmap source)
+        {
+            Rectangle srcRect = default;
+            BitmapData? data = null;
+            try
+            {
+                data = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+                byte[] buffer = new byte[data.Height * data.Stride];
+                Marshal.Copy(data.Scan0, buffer, 0, buffer.Length);
+
+                int xMin = int.MaxValue, xMax = int.MinValue, yMin = int.MaxValue, yMax = int.MinValue;
+                bool foundPixel = false;
+
+                for (int y = 0; y < data.Height; y++)
+                {
+                    for (int x = 0; x < data.Width; x++)
+                    {
+                        int alpha = buffer[y * data.Stride + 4 * x + 3];
+                        if (alpha != 0)
+                        {
+                            if (x < xMin) xMin = x;
+                            if (x > xMax) xMax = x;
+                            if (y < yMin) yMin = y;
+                            if (y > yMax) yMax = y;
+                            foundPixel = true;
+                        }
+                    }
+                }
+
+                if (!foundPixel)
+                {
+                    return new Bitmap(source); // Return copy of original if empty
+                }
+
+                srcRect = Rectangle.FromLTRB(xMin, yMin, xMax + 1, yMax + 1);
+            }
+            finally
+            {
+                if (data != null)
+                    source.UnlockBits(data);
+            }
+
+            Bitmap dest = new Bitmap(srcRect.Width, srcRect.Height);
+            using (Graphics g = Graphics.FromImage(dest))
+            {
+                g.DrawImage(source, 0, 0, srcRect, GraphicsUnit.Pixel);
+            }
+            return dest;
         }
     }
 }
