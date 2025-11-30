@@ -6,3 +6,6 @@ obj/
 *.pdb
 *.cache
 *.log
+*log.txt
+*_log.txt
+build_log*.txt
