@@ -19,7 +19,7 @@
         <TextBlock Grid.Row="2" Text="Cover Image" FontWeight="SemiBold" Margin="0,0,0,5"/>
         <Grid Grid.Row="3" Margin="0,0,0,15">
             <Border BorderBrush="Gray" BorderThickness="1" Background="#EEE" HorizontalAlignment="Center">
-                <Image x:Name="CoverImagePreview" Stretch="UniformToFill" Width="150" Height="200"/>
+                <Image x:Name="CoverImagePreview" Stretch="Uniform" Width="150" Height="200"/>
             </Border>
         </Grid>
 
