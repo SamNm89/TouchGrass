@@ -1,0 +1,69 @@
+Startup Error: System.Windows.Markup.XamlParseException: 'Set property 'Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.IconSource' threw an exception.' Line number '11' and line position '25'.
+ ---> System.ArgumentException: Argument 'picture' must be a picture that can be used as a Icon.
+   at System.Drawing.Icon.Initialize(Int32 width, Int32 height)
+   at System.Drawing.Icon..ctor(Stream stream, Int32 width, Int32 height)
+   at Hardcodet.Wpf.TaskbarNotification.Util.ToIcon(ImageSource imageSource) in D:\a\1\s\src\NotifyIconWpf\Util.cs:line 182
+   at Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.OnIconSourcePropertyChanged(DependencyPropertyChangedEventArgs e) in D:\a\1\s\src\NotifyIconWpf\TaskbarIcon.Declarations.cs:line 247
+   at Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.IconSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) in D:\a\1\s\src\NotifyIconWpf\TaskbarIcon.Declarations.cs:line 231
+   at System.Windows.FrameworkElement.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   at System.Windows.DependencyObject.NotifyPropertyChange(DependencyPropertyChangedEventArgs args)
+   at System.Windows.DependencyObject.UpdateEffectiveValue(EntryIndex entryIndex, DependencyProperty dp, PropertyMetadata metadata, EffectiveValueEntry oldEntry, EffectiveValueEntry& newEntry, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType)
+   at System.Windows.DependencyObject.SetValueCommon(DependencyProperty dp, Object value, PropertyMetadata metadata, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType, Boolean isInternal)
+   at System.Windows.DependencyObject.SetValue(DependencyProperty dp, Object value)
+   at MS.Internal.Xaml.Runtime.ClrObjectRuntime.SetValue(Object inst, XamlMember property, Object value)
+   --- End of inner exception stack trace ---
+   at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.ResourceDictionary.CreateObject(KeyRecord key)
+   at System.Windows.ResourceDictionary.OnGettingValue(Object key, Object& value, Boolean& canCache)
+   at System.Windows.ResourceDictionary.OnGettingValuePrivate(Object key, Object& value, Boolean& canCache)
+   at System.Windows.ResourceDictionary.GetValueWithoutLock(Object key, Boolean& canCache)
+   at System.Windows.ResourceDictionary.GetValue(Object key, Boolean& canCache)
+   at System.Windows.Application.FindResource(Object resourceKey)
+   at TouchGrass.App.OnStartup(StartupEventArgs e) in C:\Users\SamNm89\Documents\github\Games Launcher Suzu\TouchGrass\App.xaml.cs:line 20
+Startup Error: System.Windows.Markup.XamlParseException: 'Set property 'Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.IconSource' threw an exception.' Line number '11' and line position '25'.
+ ---> System.ArgumentException: Argument 'picture' must be a picture that can be used as a Icon.
+   at System.Drawing.Icon.Initialize(Int32 width, Int32 height)
+   at System.Drawing.Icon..ctor(Stream stream, Int32 width, Int32 height)
+   at Hardcodet.Wpf.TaskbarNotification.Util.ToIcon(ImageSource imageSource) in D:\a\1\s\src\NotifyIconWpf\Util.cs:line 182
+   at Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.OnIconSourcePropertyChanged(DependencyPropertyChangedEventArgs e) in D:\a\1\s\src\NotifyIconWpf\TaskbarIcon.Declarations.cs:line 247
+   at Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.IconSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) in D:\a\1\s\src\NotifyIconWpf\TaskbarIcon.Declarations.cs:line 231
+   at System.Windows.FrameworkElement.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   at System.Windows.DependencyObject.NotifyPropertyChange(DependencyPropertyChangedEventArgs args)
+   at System.Windows.DependencyObject.UpdateEffectiveValue(EntryIndex entryIndex, DependencyProperty dp, PropertyMetadata metadata, EffectiveValueEntry oldEntry, EffectiveValueEntry& newEntry, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType)
+   at System.Windows.DependencyObject.SetValueCommon(DependencyProperty dp, Object value, PropertyMetadata metadata, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType, Boolean isInternal)
+   at System.Windows.DependencyObject.SetValue(DependencyProperty dp, Object value)
+   at MS.Internal.Xaml.Runtime.ClrObjectRuntime.SetValue(Object inst, XamlMember property, Object value)
+   --- End of inner exception stack trace ---
+   at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.ResourceDictionary.CreateObject(KeyRecord key)
+   at System.Windows.ResourceDictionary.OnGettingValue(Object key, Object& value, Boolean& canCache)
+   at System.Windows.ResourceDictionary.OnGettingValuePrivate(Object key, Object& value, Boolean& canCache)
+   at System.Windows.ResourceDictionary.GetValueWithoutLock(Object key, Boolean& canCache)
+   at System.Windows.ResourceDictionary.GetValue(Object key, Boolean& canCache)
+   at System.Windows.Application.FindResource(Object resourceKey)
+   at TouchGrass.App.OnStartup(StartupEventArgs e) in C:\Users\SamNm89\Documents\github\Games Launcher Suzu\TouchGrass\App.xaml.cs:line 20
+Startup Error: System.Windows.Markup.XamlParseException: 'Set property 'Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.IconSource' threw an exception.' Line number '11' and line position '25'.
+ ---> System.ArgumentException: Argument 'picture' must be a picture that can be used as a Icon.
+   at System.Drawing.Icon.Initialize(Int32 width, Int32 height)
+   at System.Drawing.Icon..ctor(Stream stream, Int32 width, Int32 height)
+   at Hardcodet.Wpf.TaskbarNotification.Util.ToIcon(ImageSource imageSource) in D:\a\1\s\src\NotifyIconWpf\Util.cs:line 182
+   at Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.OnIconSourcePropertyChanged(DependencyPropertyChangedEventArgs e) in D:\a\1\s\src\NotifyIconWpf\TaskbarIcon.Declarations.cs:line 247
+   at Hardcodet.Wpf.TaskbarNotification.TaskbarIcon.IconSourcePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) in D:\a\1\s\src\NotifyIconWpf\TaskbarIcon.Declarations.cs:line 231
+   at System.Windows.FrameworkElement.OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+   at System.Windows.DependencyObject.NotifyPropertyChange(DependencyPropertyChangedEventArgs args)
+   at System.Windows.DependencyObject.UpdateEffectiveValue(EntryIndex entryIndex, DependencyProperty dp, PropertyMetadata metadata, EffectiveValueEntry oldEntry, EffectiveValueEntry& newEntry, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType)
+   at System.Windows.DependencyObject.SetValueCommon(DependencyProperty dp, Object value, PropertyMetadata metadata, Boolean coerceWithDeferredReference, Boolean coerceWithCurrentValue, OperationType operationType, Boolean isInternal)
+   at System.Windows.DependencyObject.SetValue(DependencyProperty dp, Object value)
+   at MS.Internal.Xaml.Runtime.ClrObjectRuntime.SetValue(Object inst, XamlMember property, Object value)
+   --- End of inner exception stack trace ---
+   at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.ResourceDictionary.CreateObject(KeyRecord key)
+   at System.Windows.ResourceDictionary.OnGettingValue(Object key, Object& value, Boolean& canCache)
+   at System.Windows.ResourceDictionary.OnGettingValuePrivate(Object key, Object& value, Boolean& canCache)
+   at System.Windows.ResourceDictionary.GetValueWithoutLock(Object key, Boolean& canCache)
+   at System.Windows.ResourceDictionary.GetValue(Object key, Boolean& canCache)
+   at System.Windows.Application.FindResource(Object resourceKey)
+   at TouchGrass.App.OnStartup(StartupEventArgs e) in C:\Users\SamNm89\Documents\github\Games Launcher Suzu\Touchgrass\App.xaml.cs:line 20

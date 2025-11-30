@@ -1,0 +1,94 @@
+﻿<Window x:Class="TouchGrass.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TouchGrass"
+        mc:Ignorable="d"
+        Title="Touch Grass" Height="600" Width="900"
+        Icon="/icons/test.ico"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Row: Search and Add Game -->
+        <Grid Grid.Row="0" Margin="20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                        VerticalAlignment="Center" 
+                        Margin="0,0,10,0"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Command="{Binding OpenSettingsCommand}" 
+                        Content="Settings" 
+                        Margin="0,0,10,0"/>
+                <Button Command="{Binding AddGameCommand}"
+                        Content="Add Game"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Main Area: Game Grid -->
+        <ScrollViewer Grid.Row="1" Margin="20,0,20,20">
+            <ItemsControl x:Name="GamesList" ItemsSource="{Binding Games}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="0" 
+                                 Margin="0,0,10,10" 
+                                 Width="150" 
+                                 Height="200"
+                                 VerticalAlignment="Top"
+                                 BorderBrush="Gray"
+                                 BorderThickness="1"
+                                 Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" 
+                                              Command="{Binding DataContext.LaunchGameCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                              CommandParameter="{Binding}"/>
+                            </Border.InputBindings>
+                            <Border.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Rename" 
+                                              Command="{Binding PlacementTarget.Tag.RenameGameCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                              CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Remove" 
+                                              Command="{Binding PlacementTarget.Tag.RemoveGameCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                              CommandParameter="{Binding}"/>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="150"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- Game Cover -->
+                                <Border Grid.Row="0" Background="#333" CornerRadius="0">
+                                    <Image Source="{Binding CoverImagePath}" Stretch="UniformToFill"/>
+                                </Border>
+                                
+                                <TextBlock Grid.Row="1" 
+                                           Text="{Binding Title}" 
+                                           Margin="10" 
+                                           TextTrimming="CharacterEllipsis" 
+                                           FontWeight="SemiBold"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Window>
