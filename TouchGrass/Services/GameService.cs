@@ -12,10 +12,12 @@ namespace TouchGrass.Services
         private readonly string _dataFilePath;
         private List<GameModel> _games;
 
+        public event Action? GamesChanged;
+
         public GameService()
         {
             string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string folderPath = Path.Combine(appData, "GhostLauncher");
+            string folderPath = Path.Combine(appData, "TouchGrass");
             _dataFilePath = Path.Combine(folderPath, "games.json");
 
             if (!Directory.Exists(folderPath))
@@ -67,6 +69,7 @@ namespace TouchGrass.Services
         {
             _games.Add(game);
             SaveGames();
+            GamesChanged?.Invoke();
         }
 
         public void RemoveGame(Guid id)
@@ -74,9 +77,45 @@ namespace TouchGrass.Services
             var game = _games.FirstOrDefault(g => g.Id == id);
             if (game != null)
             {
+                // Try to delete the cover image if it exists
+                if (!string.IsNullOrEmpty(game.CoverImagePath) && File.Exists(game.CoverImagePath))
+                {
+                    try
+                    {
+                        File.Delete(game.CoverImagePath);
+                    }
+                    catch
+                    {
+                        // Ignore errors during deletion (e.g. file in use)
+                    }
+                }
+
                 _games.Remove(game);
                 SaveGames();
+                GamesChanged?.Invoke();
             }
+        }
+
+        public void ClearLibrary()
+        {
+            foreach (var game in _games)
+            {
+                if (!string.IsNullOrEmpty(game.CoverImagePath) && File.Exists(game.CoverImagePath))
+                {
+                    try
+                    {
+                        File.Delete(game.CoverImagePath);
+                    }
+                    catch
+                    {
+                        // Ignore errors
+                    }
+                }
+            }
+
+            _games.Clear();
+            SaveGames();
+            GamesChanged?.Invoke();
         }
 
         public void UpdateGame(GameModel updatedGame)
@@ -86,6 +125,7 @@ namespace TouchGrass.Services
             {
                 _games[index] = updatedGame;
                 SaveGames();
+                GamesChanged?.Invoke();
             }
         }
     }

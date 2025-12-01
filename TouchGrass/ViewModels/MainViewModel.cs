@@ -21,12 +21,23 @@ namespace TouchGrass.ViewModels
         {
             _gameService = gameService;
             _launcherService = launcherService;
+            
+            _gameService.GamesChanged += OnGamesChanged;
+            
             LoadGames();
+        }
+
+        private void OnGamesChanged()
+        {
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                LoadGames();
+            });
         }
 
         private void LoadGames()
         {
-            _allGames = _gameService.LoadGames();
+            _allGames = _gameService.GetAllGames();
             FilterGames();
         }
 
@@ -67,7 +78,7 @@ namespace TouchGrass.ViewModels
                     
                     // Extract Icon
                     string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                    string coversDir = System.IO.Path.Combine(appData, "GhostLauncher", "Covers");
+                    string coversDir = System.IO.Path.Combine(appData, "TouchGrass", "Covers");
                     string? extractedIconPath = Helpers.IconHelper.ExtractIconToPng(filename, coversDir);
 
                     // Show Dialog for details (passing the extracted icon path)
@@ -87,10 +98,8 @@ namespace TouchGrass.ViewModels
                         };
 
                         _gameService.AddGame(newGame);
-                        _allGames.Add(newGame);
                     }
                 }
-                FilterGames();
             }
         }
 
@@ -114,8 +123,6 @@ namespace TouchGrass.ViewModels
             if (game == null) return;
 
             _gameService.RemoveGame(game.Id);
-            _allGames.RemoveAll(g => g.Id == game.Id);
-            FilterGames();
         }
 
         [RelayCommand]
@@ -128,14 +135,13 @@ namespace TouchGrass.ViewModels
             {
                 game.Title = dialog.GameTitle;
                 _gameService.UpdateGame(game);
-                FilterGames();
             }
         }
 
         [RelayCommand]
         private void OpenSettings()
         {
-            var settingsWindow = new Views.SettingsWindow(App.SettingsService);
+            var settingsWindow = new Views.SettingsWindow(App.SettingsService, _gameService);
             if (settingsWindow.ShowDialog() == true)
             {
                 var app = System.Windows.Application.Current as App;

@@ -9,11 +9,15 @@ namespace TouchGrass.Views
         private Key _selectedKey;
         private ModifierKeys _selectedModifiers;
         private readonly SettingsService _settingsService;
+        private readonly GameService _gameService;
 
-        public SettingsWindow(SettingsService settingsService)
+        public bool LibraryDeleted { get; private set; } = false;
+
+        public SettingsWindow(SettingsService settingsService, GameService gameService)
         {
             InitializeComponent();
             _settingsService = settingsService;
+            _gameService = gameService;
             LoadCurrentSettings();
         }
 
@@ -65,6 +69,22 @@ namespace TouchGrass.Views
 
             _settingsService.SaveSettings(newSettings);
             DialogResult = true;
+        }
+
+        private void DeleteLibrary_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show(
+                "Are you sure you want to delete your ENTIRE game library?\nThis action cannot be undone and will delete all game entries and their cover images.",
+                "Confirm Delete All",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                _gameService.ClearLibrary();
+                LibraryDeleted = true;
+                MessageBox.Show("Library cleared successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
 }

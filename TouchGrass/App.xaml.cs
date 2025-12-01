@@ -12,6 +12,7 @@ namespace TouchGrass
         private TaskbarIcon? _notifyIcon;
         private static System.Threading.Mutex? _mutex;
         public static SettingsService SettingsService { get; private set; } = new SettingsService();
+        public static GameService GameService { get; private set; } = new GameService();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -37,13 +38,16 @@ namespace TouchGrass
                 // Register Hotkey
                 RegisterHotkey();
 
-                if (MainWindow == null)
+                // Defer MainWindow creation to improve startup performance
+                Dispatcher.InvokeAsync(() =>
                 {
-                    new MainWindow();
-                }
-                
-                // Ensure it's hidden initially
-                MainWindow?.Hide();
+                    if (MainWindow == null)
+                    {
+                        new MainWindow();
+                    }
+                    // Ensure it's hidden initially
+                    MainWindow?.Hide();
+                }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             }
             catch (Exception ex)
             {
@@ -106,7 +110,7 @@ namespace TouchGrass
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new Views.SettingsWindow(SettingsService);
+            var settingsWindow = new Views.SettingsWindow(SettingsService, GameService);
             if (settingsWindow.ShowDialog() == true)
             {
                 RegisterHotkey();

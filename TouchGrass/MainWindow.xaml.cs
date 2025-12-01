@@ -9,7 +9,7 @@ namespace TouchGrass
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ViewModels.MainViewModel(new Services.GameService(), new Services.LauncherService());
+            DataContext = new ViewModels.MainViewModel(App.GameService, new Services.LauncherService());
         }
 
         protected override void OnClosing(CancelEventArgs e)

@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TouchGrass"
+        xmlns:converters="clr-namespace:TouchGrass.Converters"
         mc:Ignorable="d"
         Title="Touch Grass" Height="600" Width="900"
         Style="{StaticResource FuturisticWindowStyle}"
         Icon="/icons/test.ico"
         WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <converters:PathToBitmapImageConverter x:Key="PathToBitmapImageConverter"/>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -58,7 +63,8 @@
                                  BorderBrush="{StaticResource NeonBlue}"
                                  BorderThickness="1"
                                  CornerRadius="10"
-                                 Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
+                                 Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}"
+                                 CacheMode="BitmapCache">
                             <Border.Effect>
                                 <DropShadowEffect Color="#00D4FF" BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
                             </Border.Effect>
@@ -88,7 +94,7 @@
                                     <Border.Clip>
                                         <RectangleGeometry Rect="0,0,148,148" RadiusX="10" RadiusY="10"/>
                                     </Border.Clip>
-                                    <Image Source="{Binding CoverImagePath}" Stretch="Uniform"/>
+                                    <Image Source="{Binding CoverImagePath, Converter={StaticResource PathToBitmapImageConverter}, IsAsync=True}" Stretch="Uniform"/>
                                 </Border>
                                 
                                 <TextBlock Grid.Row="1" 
