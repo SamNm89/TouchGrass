@@ -28,6 +28,9 @@ namespace TouchGrass.Views
                     // Handle invalid image
                 }
             }
+
+            CommandBindings.Add(new System.Windows.Input.CommandBinding(SystemCommands.CloseWindowCommand, (s, e) => SystemCommands.CloseWindow(this)));
+            CommandBindings.Add(new System.Windows.Input.CommandBinding(SystemCommands.MinimizeWindowCommand, (s, e) => SystemCommands.MinimizeWindow(this)));
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)

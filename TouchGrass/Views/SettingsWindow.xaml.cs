@@ -15,6 +15,9 @@ namespace TouchGrass.Views
             InitializeComponent();
             _settingsService = settingsService;
             LoadCurrentSettings();
+
+            CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, (s, e) => SystemCommands.CloseWindow(this)));
+            CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, (s, e) => SystemCommands.MinimizeWindow(this)));
         }
 
         private void LoadCurrentSettings()

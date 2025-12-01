@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TouchGrass"
         mc:Ignorable="d"
         Title="Touch Grass" Height="600" Width="900"
+        Style="{StaticResource FuturisticWindowStyle}"
         Icon="/icons/test.ico"
         WindowStartupLocation="CenterScreen">
 
@@ -23,14 +24,17 @@
             </Grid.ColumnDefinitions>
 
             <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                        Style="{StaticResource FuturisticTextBoxStyle}"
                         VerticalAlignment="Center" 
                         Margin="0,0,10,0"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button Command="{Binding OpenSettingsCommand}" 
+                        Style="{StaticResource FuturisticButtonStyle}"
                         Content="Settings" 
                         Margin="0,0,10,0"/>
                 <Button Command="{Binding AddGameCommand}"
+                        Style="{StaticResource FuturisticButtonStyle}"
                         Content="Add Game"/>
             </StackPanel>
         </Grid>
@@ -50,9 +54,14 @@
                                  Width="150" 
                                  Height="200"
                                  VerticalAlignment="Top"
-                                 BorderBrush="Gray"
+                                 Background="{StaticResource CardDark}"
+                                 BorderBrush="{StaticResource NeonBlue}"
                                  BorderThickness="1"
+                                 CornerRadius="10"
                                  Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=Window}}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#00D4FF" BlurRadius="10" ShadowDepth="0" Opacity="0.5"/>
+                            </Border.Effect>
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" 
                                               Command="{Binding DataContext.LaunchGameCommand, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -75,7 +84,10 @@
                                 </Grid.RowDefinitions>
                                 
                                 <!-- Game Cover -->
-                                <Border Grid.Row="0" Background="#333" CornerRadius="0">
+                                <Border Grid.Row="0" Background="#333" CornerRadius="10,10,0,0">
+                                    <Border.Clip>
+                                        <RectangleGeometry Rect="0,0,148,148" RadiusX="10" RadiusY="10"/>
+                                    </Border.Clip>
                                     <Image Source="{Binding CoverImagePath}" Stretch="Uniform"/>
                                 </Border>
                                 

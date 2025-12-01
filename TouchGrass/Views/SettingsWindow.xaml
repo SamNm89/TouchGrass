@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Settings" Width="400"
         SizeToContent="Height"
+        Style="{StaticResource FuturisticWindowStyle}"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     <Grid Margin="20">
@@ -14,13 +15,14 @@
         </Grid.RowDefinitions>
 
         <!-- Hotkey Section -->
-        <GroupBox Header="Global Hotkey" Grid.Row="0" Padding="10">
+        <GroupBox Header="Global Hotkey" Grid.Row="0" Padding="10" Foreground="{StaticResource TextWhite}" BorderBrush="{StaticResource NeonBlue}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="HotkeyTextBox" IsReadOnly="True" PreviewKeyDown="HotkeyTextBox_PreviewKeyDown" 
+                         Style="{StaticResource FuturisticTextBoxStyle}"
                          Text="Alt + Space" VerticalContentAlignment="Center" Height="25"/>
                 <TextBlock Grid.Column="1" Text="Press any key combination" 
                            VerticalAlignment="Center" Margin="10,0,0,0" FontStyle="Italic" Foreground="Gray"/>
@@ -28,17 +30,17 @@
         </GroupBox>
 
         <!-- Startup Section -->
-        <GroupBox Header="General" Grid.Row="1" Margin="0,10,0,0" Padding="10">
+        <GroupBox Header="General" Grid.Row="1" Margin="0,10,0,0" Padding="10" Foreground="{StaticResource TextWhite}" BorderBrush="{StaticResource NeonBlue}">
             <StackPanel>
-                <CheckBox x:Name="RunOnStartupCheckBox" Content="Run on Startup" Margin="0,0,0,5"/>
-                <CheckBox x:Name="ShowTrayIconCheckBox" Content="Show Tray Icon"/>
+                <CheckBox x:Name="RunOnStartupCheckBox" Content="Run on Startup" Margin="0,0,0,5" Foreground="{StaticResource TextWhite}"/>
+                <CheckBox x:Name="ShowTrayIconCheckBox" Content="Show Tray Icon" Foreground="{StaticResource TextWhite}"/>
             </StackPanel>
         </GroupBox>
 
         <!-- Buttons -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Cancel" Width="80" Height="25" Margin="0,0,10,0" IsCancel="True"/>
-            <Button Content="Save" Width="80" Height="25" Click="Save_Click" IsDefault="True"/>
+            <Button Content="Cancel" Width="80" Height="25" Margin="0,0,10,0" IsCancel="True" Style="{StaticResource FuturisticButtonStyle}"/>
+            <Button Content="Save" Width="80" Height="25" Click="Save_Click" IsDefault="True" Style="{StaticResource FuturisticButtonStyle}"/>
         </StackPanel>
     </Grid>
 </Window>
