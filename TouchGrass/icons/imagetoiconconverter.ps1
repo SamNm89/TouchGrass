@@ -1,5 +1,5 @@
 # Requires ImageMagick installed and 'magick' available in PATH
-
+# I found most online tools dont create real .ico files so i made this script to create real .ico files
 Get-ChildItem -Filter *.png | ForEach-Object {
     $baseName = $_.BaseName
     $inputPath = $_.FullName
