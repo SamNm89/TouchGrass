@@ -35,8 +35,13 @@ I built this project for a friend who need this in his life
 
 ~~bug where remove the game from library not remove the icon from the data folder~~
 
-try context menu. there a line split betwen the two options but the line not in the middle
+~~tray context menu. there a line split betwen the two options but the line not in the middle~~
 
 add help button to the settings window
 
 ~~add ability to go to settings, press a button delete all libary, ofc there must be a confirmation window for this~~   
+
+~~add ability to edit icon of already exisitng game~~
+
+add readme file to the final compiled project
+
