@@ -78,6 +78,9 @@
                                     <MenuItem Header="Rename" 
                                               Command="{Binding PlacementTarget.Tag.RenameGameCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                               CommandParameter="{Binding}"/>
+                                    <MenuItem Header="Change Icon" 
+                                              Command="{Binding PlacementTarget.Tag.ChangeIconCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                              CommandParameter="{Binding}"/>
                                     <MenuItem Header="Remove" 
                                               Command="{Binding PlacementTarget.Tag.RemoveGameCommand, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                               CommandParameter="{Binding}"/>

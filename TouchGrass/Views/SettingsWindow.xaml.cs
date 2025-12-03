@@ -11,7 +11,7 @@ namespace TouchGrass.Views
         private readonly SettingsService _settingsService;
         private readonly GameService _gameService;
 
-        public bool LibraryDeleted { get; private set; } = false;
+
 
         public SettingsWindow(SettingsService settingsService, GameService gameService)
         {
@@ -82,7 +82,7 @@ namespace TouchGrass.Views
             if (result == MessageBoxResult.Yes)
             {
                 _gameService.ClearLibrary();
-                LibraryDeleted = true;
+
                 MessageBox.Show("Library cleared successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

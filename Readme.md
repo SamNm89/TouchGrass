@@ -26,19 +26,17 @@ I built this project for a friend who need this in his life
 - add more visuals to the UI
 --~~improve the UI-~~
 
-the "settings, add game" buttons have very tight box around them.
-scroll bar is white and out of theme 
-right click on game to show "rename, remove" menu show in the old default windows theme
+~~the "settings, add game" buttons have very tight box around them.~~
+~~scroll bar is white and out of theme~~ 
+~~right click on game to show "rename, remove" menu show in the old default windows theme~~
 
 
-bug where import same gamme mmultiple times (possible reason clicking so fast)
+~~bug where import same gamme mmultiple times (possible reason clicking so fast)~~
 
-bug where remove the game from library not remove the icon from the data folder
+~~bug where remove the game from library not remove the icon from the data folder~~
 
 try context menu. there a line split betwen the two options but the line not in the middle
 
 add help button to the settings window
 
-add ability to select mmultiple gammes in libary and remove them at once 
-deafuly windows selection tools 
-ctrl/ shit + click to select multiple items
+~~add ability to go to settings, press a button delete all libary, ofc there must be a confirmation window for this~~   

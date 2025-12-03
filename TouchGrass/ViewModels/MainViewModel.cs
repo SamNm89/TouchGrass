@@ -139,6 +139,62 @@ namespace TouchGrass.ViewModels
         }
 
         [RelayCommand]
+        private void ChangeIcon(GameModel? game)
+        {
+            if (game == null) return;
+
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "Executables (*.exe;*.url;*.lnk)|*.exe;*.url;*.lnk|All files (*.*)|*.*"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string filename = openFileDialog.FileName;
+                
+                // Extract Icon
+                string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string coversDir = System.IO.Path.Combine(appData, "TouchGrass", "Covers");
+                string? extractedIconPath = Helpers.IconHelper.ExtractIconToPng(filename, coversDir);
+
+                if (!string.IsNullOrEmpty(extractedIconPath))
+                {
+                    game.CoverImagePath = extractedIconPath;
+                    _gameService.UpdateGame(game);
+                    
+                    // Force UI update if necessary (ObservableObject should handle it if binding is correct)
+                    // If the collection doesn't refresh automatically, we might need to trigger it.
+                    // For now, assuming PropertyChanged on GameModel or CollectionChanged handles it.
+                    // If GameModel implements INotifyPropertyChanged, it should work.
+                    // If not, we might need to replace the item in the collection.
+                    
+                    // Let's check if we need to refresh the list to show the new icon immediately
+                    // A simple way is to remove and re-add or just notify.
+                    // But let's rely on binding first.
+                    
+                    // To be safe, let's refresh the list view if needed, but ideally GameModel notifies.
+                    // If GameModel is not an ObservableObject, we might need to reload.
+                    // Let's reload games to be sure for now, or just let it be.
+                    // Actually, let's just call LoadGames() to refresh the UI state completely if needed,
+                    // but that might be heavy. 
+                    // Let's try to just update the object.
+                    
+                    // If the UI doesn't update, we can force a refresh.
+                    // _allGames is a List, Games is ObservableCollection.
+                    // Updating 'game' instance should update UI if 'game' raises PropertyChanged.
+                    // If 'GameModel' is a simple class, it won't.
+                    // Let's assume GameModel is simple for now and just refresh the list item.
+                    
+                    int index = Games.IndexOf(game);
+                    if (index != -1)
+                    {
+                        Games[index] = game; // This triggers CollectionChanged Replace
+                    }
+                }
+            }
+        }
+
+        [RelayCommand]
         private void OpenSettings()
         {
             var settingsWindow = new Views.SettingsWindow(App.SettingsService, _gameService);
