@@ -12,3 +12,18 @@ Complete invisibility option
 
 Implemented icon extraction, hotkey registration and comprehensive settings (hotkey customization, startup behavior).
 
+## Demo Video
+
+<p align="center">
+  <a href="https://youtu.be/VIDEO_ID">
+    <img src="https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg" alt="TouchGrass demo video" width="800" />
+  </a>
+</p>
+
+If you want to embed a local MP4 file instead, add this snippet:
+
+```md
+<video src="https://raw.githubusercontent.com/SamNm89/TouchGrass/main/demo.mp4" controls width="800"></video>
+```
+
+Replace the `VIDEO_ID` or `demo.mp4` URL with your actual video file when it's ready.
