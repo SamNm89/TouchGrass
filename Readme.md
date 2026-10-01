@@ -1,4 +1,4 @@
-Built a lightweight desktop game launcher for a client who needed quick access to their library without desktop clutter. The goal was creating a truly invisible app that wouldn't impact gaming performance.
+Built a lightweight desktop game launcher for a client who needed quick access to their library without desktop clutter. The goal was creating a truly invisible app that wouldn't impact gaming perf[...]
 
 Developed using C# and WPF with features including:
 
@@ -14,6 +14,4 @@ Implemented icon extraction, hotkey registration and comprehensive settings (hot
 
 ## Demo Video
 
-
-<video src="https://raw.githubusercontent.com/SamNm89/TouchGrass/main/demo.mp4" controls width="800"></video>
-
+[![Demo Video](https://img.youtube.com/vi/OO8vDp_7rEs/hqdefault.jpg)](https://youtu.be/OO8vDp_7rEs?si=aguqFaYO1cdav17_)
